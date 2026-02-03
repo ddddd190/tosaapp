@@ -1,83 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>今この瞬間のみんなの気分</title>
-<style>
-  body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 96px;
-  }
-  #mood {
-    display: inline-block;
-  }
-</style>
-</head>
-<body>
-
-<div id="mood">🙂</div>
-
-<script>
-  console.log("JS 実行中");
-
-  const moods = ["🙂", "😴", "😐", "😵‍💫", "😌"];
-  let i = 0;
-
-  setInterval(() => {
-    document.getElementById("mood").textContent = moods[i];
-    i = (i + 1) % moods.length;
-  }, 5000);
-
-  let t = 0;
-  function animate() {
-    t += 0.1;
-    document.getElementById("mood").style.transform =
-      "translateY(" + Math.sin(t) * 15 + "px)";
-    requestAnimationFrame(animate);
-  }
-  animate();
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>今この瞬間のみんなの気分</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #ffffff;
-    }
-
-    h1 {
-      font-size: 24px;
-      color: #333;
-      text-align: center;
-      line-height: 1.4;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>今この瞬間の<br>みんなの気分</h1>
-    <p class="note">※ 日本全体の空気感（推定）</p>
-<p class="note">※ 日本全体の空気感（推定）</p>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
   <meta charset="UTF-8">
   <title>今この瞬間のみんなの気分</title>
 
@@ -93,14 +16,26 @@
       overflow: hidden;
     }
 
-    h1 {
-      font-size: 24px;
-      color: #333;
+    .container {
       text-align: center;
-      line-height: 1.4;
+      position: relative;
       z-index: 1;
     }
 
+    h1 {
+      font-size: 24px;
+      color: #333;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .note {
+      font-size: 24px;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    /* ✧ 装飾 */
     .star {
       position: absolute;
       font-size: 18px;
@@ -132,8 +67,20 @@
 </head>
 <body>
 
+  <!-- 動く✧ -->
   <div class="star left">✧</div>
   <div class="star right">✧</div>
 
+  <!-- 中央コンテンツ -->
+  <div class="container">
+    <h1>
+      今この瞬間の<br>
+      みんなの気分
+    </h1>
+
+    <p class="note">※ 日本全体の空気感（推定）</p>
+  </div>
+
 </body>
 </html>
+
