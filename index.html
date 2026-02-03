@@ -114,6 +114,27 @@
     }
     animate();
   </script>
+  <script>
+  console.log("JS 実行中");
+
+  const moods = ["🙂", "😴", "😐", "😵‍💫", "😌"];
+  let i = 0;
+
+  setInterval(() => {
+    document.getElementById("mood").textContent = moods[i];
+    i = (i + 1) % moods.length;
+  }, 5000);
+
+  let t = 0;
+  function animate() {
+    t += 0.1;
+    document.getElementById("mood").style.transform =
+      "translateY(" + Math.sin(t) * 15 + "px)";
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+
 
 </body>
 </html>
