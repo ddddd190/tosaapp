@@ -53,6 +53,11 @@ h1 {
   margin-bottom: 10px;
   color: #888;
 }
+.mood {
+  font-size: 96px;
+  margin-bottom: 10px;
+  will-change: transform;
+}
 
 .history ul {
   list-style: none;
@@ -98,3 +103,20 @@ h1 {
   from { transform: translateY(0); }
   to { transform: translateY(-120vh); }
 }
+const moodEl = document.getElementById("mood");
+
+let start = null;
+
+function floatEmoji(timestamp) {
+  if (!start) start = timestamp;
+  const progress = timestamp - start;
+
+  // ゆっくり上下に揺れる
+  const y = Math.sin(progress / 800) * 6;
+
+  moodEl.style.transform = `translateY(${y}px)`;
+
+  requestAnimationFrame(floatEmoji);
+}
+
+requestAnimationFrame(floatEmoji);
