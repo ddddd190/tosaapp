@@ -5,6 +5,7 @@
   <title>今この瞬間のみんなの気分</title>
 
   <style>
+    /* 基本設定 */
     body {
       margin: 0;
       height: 100vh;
@@ -16,21 +17,32 @@
       overflow: hidden;
     }
 
+    /* 中央コンテナ */
     .container {
       text-align: center;
       position: relative;
       z-index: 1;
     }
 
+    /* タイトル */
     h1 {
-      font-size: 12px;
+      font-size: 24px;
       color: #333;
       line-height: 1.4;
       margin-bottom: 16px;
     }
 
+    /* 絵文字 */
+    .mood {
+      font-size: 96px;
+      display: inline-block;
+      margin-bottom: 12px;
+      will-change: transform;
+    }
+
+    /* 注釈 */
     .note {
-      font-size: 24px;
+      font-size: 18px; /* 少し小さくしました */
       color: #666;
       margin-top: 8px;
     }
@@ -56,12 +68,8 @@
     }
 
     @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-12px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
     }
   </style>
 </head>
@@ -78,9 +86,36 @@
       みんなの気分
     </h1>
 
+    <!-- 絵文字 -->
+    <div id="mood" class="mood">😐</div>
+
+    <!-- 注釈 -->
     <p class="note">※ 日本全体の空気感（推定）</p>
   </div>
 
+  <!-- JS: 5秒ごとに絵文字を切り替え＆揺らす -->
+  <script>
+    const moods = ["😊", "😐", "😩", "😴", "😶‍🌫️"];
+    let index = 0;
+    const moodEl = document.getElementById("mood");
+
+    // 5秒ごとに絵文字を切り替える
+    setInterval(() => {
+      index = (index + 1) % moods.length;
+      moodEl.textContent = moods[index];
+    }, 5000);
+
+    // 絵文字を上下に揺らす
+    let t = 0;
+    function animate() {
+      t += 0.1;
+      moodEl.style.transform = `translateY(${Math.sin(t) * 10}px)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
 </body>
 </html>
+
 
