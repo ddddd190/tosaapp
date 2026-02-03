@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>今この瞬間のみんなの気分</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>今この瞬間のみんなの気分</title>
+<style>
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 96px;
+  }
+  #mood {
+    display: inline-block;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>今この瞬間の<br>みんなの気分</h1>
 
-    <div id="mood" class="mood">😐</div>
-    <div id="label" class="label">---</div>
+<div id="mood">🙂</div>
 
-    <p class="note">※ 日本全体の空気感（推定）</p>
+<script>
+  console.log("JS 実行中");
 
-  <div class="star tl">✦</div>
-  <div class="star br">✧</div>
+  const moods = ["🙂", "😴", "😐", "😵‍💫", "😌"];
+  let i = 0;
 
-  <div class="decor">
-    <div class="bubble" style="left:10%; animation-delay:0s"></div>
-    <div class="bubble" style="left:30%; animation-delay:4s"></div>
-    <div class="bubble" style="left:60%; animation-delay:8s"></div>
-    <div class="bubble" style="left:80%; animation-delay:12s"></div>
-  </div>
+  setInterval(() => {
+    document.getElementById("mood").textContent = moods[i];
+    i = (i + 1) % moods.length;
+  }, 5000);
 
-  <script src="script.js"></script>
+  let t = 0;
+  function animate() {
+    t += 0.1;
+    document.getElementById("mood").style.transform =
+      "translateY(" + Math.sin(t) * 15 + "px)";
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+
 </body>
 </html>
