@@ -120,3 +120,9 @@ function floatEmoji(timestamp) {
 }
 
 requestAnimationFrame(floatEmoji);
+.mood {
+  font-size: 96px;
+  margin-bottom: 10px;
+  display: inline-block; /* ← 超重要 */
+  transform: translateY(0);
+}
