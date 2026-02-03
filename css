@@ -1,19 +1,8 @@
-<div class="star tl">✦</div>
-<div class="star br">✧</div>
-
-<div class="decor">
-  <div class="bubble" style="left:10%; animation-delay:0s"></div>
-  <div class="bubble" style="left:30%; animation-delay:4s"></div>
-  <div class="bubble" style="left:60%; animation-delay:8s"></div>
-  <div class="bubble" style="left:80%; animation-delay:12s"></div>
-</div>
-
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(180deg, #eef2ff, #ffffff);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  background: linear-gradient(180deg, #fdf1ff, #eef7ff, #ffffff);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,6 +21,12 @@ h1 {
 .mood {
   font-size: 96px;
   margin-bottom: 10px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 .label {
@@ -44,36 +39,6 @@ h1 {
   margin-top: 30px;
   font-size: 12px;
   color: #888;
-}
-
-const moods = [
-  { emoji: "😊", label: "わりと元気" },
-  { emoji: "😐", label: "普通" },
-  { emoji: "😩", label: "ちょっと疲れてる" },
-  { emoji: "😴", label: "眠い" },
-  { emoji: "😶‍🌫️", label: "ぼんやり" }
-];
-
-function getMoodByTime() {
-  const hour = new Date().getHours();
-
-  if (hour >= 6 && hour < 9) return moods[3];      // 朝眠い
-  if (hour >= 9 && hour < 12) return moods[0];     // 午前元気
-  if (hour >= 12 && hour < 15) return moods[1];    // 昼普通
-  if (hour >= 15 && hour < 18) return moods[2];    // 夕方疲れ
-  if (hour >= 18 && hour < 22) return moods[1];    // 夜普通
-  return moods[3];                                 // 深夜眠い
-}
-
-.mood {
-  font-size: 96px;
-  margin-bottom: 10px;
-  animation: float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
 }
 
 .history {
@@ -99,22 +64,6 @@ function getMoodByTime() {
   display: flex;
   gap: 8px;
   margin-bottom: 6px;
-  align-items: center;
-}
-
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(
-    180deg,
-    #fdf1ff,
-    #eef7ff,
-    #ffffff
-  );
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -147,18 +96,5 @@ body {
 
 @keyframes floatUp {
   from { transform: translateY(0); }
-  to   { transform: translateY(-120vh); }
-}
-
-.cloud {
-  position: fixed;
-  top: 20%;
-  left: -200px;
-  font-size: 80px;
-  opacity: 0.15;
-  animation: cloudMove 60s linear infinite;
-}
-
-@keyframes cloudMove {
-  to { transform: translateX(120vw); }
+  to { transform: translateY(-120vh); }
 }
